@@ -38,6 +38,24 @@ function getImageSize(src) {
     return [_width, _height]
 }
 
+class Item extends React.Component {
+    render() {
+        return (
+            <Carousel.Item>
+                <img
+                    className="d-block w-100"
+                    src={this.props.path}
+                    alt={this.props.alt}
+                />
+                <Carousel.Caption>
+                    <h3>{this.props.captionHead}</h3>
+                    <p>{this.props.captionBody}</p>
+                </Carousel.Caption>
+            </Carousel.Item>
+        )
+    }
+}
+
 export default class Logo extends React.Component {
     constructor(props) {
         super(props);
@@ -64,51 +82,16 @@ export default class Logo extends React.Component {
 
     // js 에서는 파일 시스템에 동적으로 접근할 방법이 없다고함...
     render() {
-        let size1 = getImageSize(this.state.logos[0])
-        let size2 = getImageSize(this.state.logos[1])
-        let size3 = getImageSize(this.state.logos[2])
+        const logos = this.state.logos
+        let items = logos.map(
+            logo => <Item key={logo.id} {...logo} />
+        )
 
-        console.log(size1)
-        console.log(size2)
-        console.log(size3)
+        console.log(items)
 
         return (
             <Carousel variant="dark" pause="hover">
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={(this.state.logos)[0]}
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>봉개구디</h3>
-                        <p>봉천동 개발자 구파발 디자이너</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={(this.state.logos)[1]}
-                        alt="Second slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Image on phone.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src={(this.state.logos)[2]}
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Greetings</h3>
-                        <p>Greetings from word wide country</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
+                {items}
             </Carousel>
         )
     }

@@ -14,7 +14,7 @@ class App extends React.Component {
                     <Router>
                         <Route path="/home" component={Home}/>
                         <Route path="/about" component={About}/>
-                        <Route path="/logo" render={() => <Logo location='img_list.json' />}/>
+                        <Route path="/logo" render={() => <Logo location='img/img_list.json' />}/>
                     </Router>
                 </div>
             </div>
