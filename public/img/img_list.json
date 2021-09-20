@@ -1,11 +1,23 @@
 [
   {
-    "path": "bonggaegude.jpeg"
+    "id": 1,
+    "path": "img/bonggaegude.jpeg",
+    "alt": "First slide",
+    "captionHead": "봉개구디",
+    "captionBody": "봉천동 개발자 구파발 디자이너"
   },
   {
-    "path": "logo_on_phone"
+    "id": 2,
+    "path": "img/logo_on_phone.png",
+    "alt": "Second slide",
+    "captionHead": "Second slide label",
+    "captionBody": "Image on phone"
   },
   {
-    "path": "greeting.png"
+    "id": 3,
+    "path": "img/greeting.png",
+    "alt": "Third slide",
+    "captionHead": "Greetings",
+    "captionBody": "Greetings from word wide country"
   }
 ]
