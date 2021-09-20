@@ -1,60 +1,5 @@
-import React, {useEffect, useState} from "react";
-import {Carousel} from "react-bootstrap";
-import {render} from "react-dom";
-
-function getWindowDimensions() {
-    const {innerWidth: width, innerHeight: height} = window;
-    return {
-        width,
-        height
-    };
-}
-
-function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(
-        getWindowDimensions()
-    );
-
-    useEffect(() => {
-        function handleResize() {
-            setWindowDimensions(getWindowDimensions());
-        }
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowDimensions;
-}
-
-function getImageSize(src) {
-    const img = new Image();
-    let _width, _height;
-
-    img.src = src;
-    _width= img.width;
-    _height= img.height;
-
-    return [_width, _height]
-}
-
-class Item extends React.Component {
-    render() {
-        return (
-            <Carousel.Item>
-                <img
-                    className="d-block w-100"
-                    src={this.props.path}
-                    alt={this.props.alt}
-                />
-                <Carousel.Caption>
-                    <h3>{this.props.captionHead}</h3>
-                    <p>{this.props.captionBody}</p>
-                </Carousel.Caption>
-            </Carousel.Item>
-        )
-    }
-}
+import React from "react";
+import Carousel from "react-bootstrap/Carousel";
 
 export default class Logo extends React.Component {
     constructor(props) {
@@ -83,15 +28,18 @@ export default class Logo extends React.Component {
     // js 에서는 파일 시스템에 동적으로 접근할 방법이 없다고함...
     render() {
         const logos = this.state.logos
-        let items = logos.map(
-            logo => <Item key={logo.id} {...logo} />
-        )
-
-        console.log(items)
 
         return (
             <Carousel variant="dark" pause="hover">
-                {items}
+                {logos.map(logo => (
+                    <Carousel.Item>
+                        <img className="d-block w-100" src={logo.path} alt={logo.alt}/>
+                        <Carousel.Caption>
+                            <h3>{logo.captionHead}</h3>
+                            <p>{logo.captionBody}</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                ))}
             </Carousel>
         )
     }
